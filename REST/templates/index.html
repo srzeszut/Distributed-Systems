@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>F1 Drivers Stats</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<h2>Search driver:</h2>
+<form action="/drivers" method="GET">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="Robert Kubica"><br><br>
+    <input type="submit" value="Szukaj">
+</form>
+{{ if .driverFound }}
+<h2>Driver Details:</h2>
+<p>Name: {{ .driver.Name }}</p>
+<p>Country: {{ .driver.Country }}</p>
+<p>Teams: {{ range .driver.Teams }}{{ . }}, {{ end }}</p>
+<p>Wins: {{ .driver.Wins }}</p>
+<p>Races: {{ .driver.Races }}</p>
+<p>Championships: {{ .driver.Championships }}</p>
+<p>Points: {{ .driver.Points }}</p>
+<p>Podiums: {{ .driver.Podiums }}</p>
+<p>Number: {{ .driver.Number }}</p>
+<p>Fastest Laps last season: {{ .fastestLaps }}</p>
+<p>Wins percentage: {{.driver.WinsPercentage}}</p>
+<p>Podiums percentage: {{.driver.PodiumsPercentage}}</p>
+
+
+<h1>Latest News</h1>
+<ul>
+    {{ range .news }}
+    <li>
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Description }}</p>
+        <p>{{ .Url }}</p>
+    </li>
+    {{ end }}
+</ul>
+
+{{ end }}
+
+
+</body>
+</html>
